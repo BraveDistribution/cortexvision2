@@ -9,10 +9,8 @@
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; 
+            font-family: Arial, sans-serif; /* Added a default font */
+            color: #333; /* Default text color */
             background: linear-gradient(
                 rgba(136, 49, 79, 0.6), 
                 rgba(136, 49, 79, 0.6)
@@ -21,17 +19,223 @@
             background-size: cover; /* Ensures the image covers the entire area */
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-attachment: fixed; /* Keeps background fixed during scroll */
             background-color: #e7e6e7; /* Fallback background color */
         }
 
-        img {
-            width: 50%; /* Make the logo 50% of its original size */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content */
+            border-radius: 8px; /* Rounded corners for the container */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+
+        header img.logo {
+            width: 400px; /* Adjusted logo size */
             height: auto; /* Maintain aspect ratio */
             display: block;
+            margin: 0 auto; /* Center the logo */
+        }
+
+        h1, h2 {
+            color: #333; /* Darker color for headings */
+            text-align: center;
+        }
+
+        section {
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque for sections */
+            border-radius: 8px;
+        }
+
+        section h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #88314f; /* Accent color for section titles */
+            display: inline-block; /* To make border only as wide as text */
+        }
+        
+        /* Center section headings */
+        .section-title-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Basic styling for placeholder content */
+        p {
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .products-list {
+            list-style-type: none; /* Remove default bullet points */
+            padding: 0;
+        }
+
+        .products-list li {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 10px; /* Space between product items */
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .products-list li h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #88314f; /* Accent color for product titles */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Grid layout for team members and references */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between grid items */
+            padding: 20px 0;
+        }
+
+        .grid-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center; /* Center content within grid items */
+        }
+
+        .grid-item h3 {
+            margin-top: 0;
+            color: #88314f; /* Accent color for item titles */
         }
     </style>
 </head>
 <body>
-    <img src="assets/imgs/logo.png" alt="Logo">
+    <div class="container">
+        <header>
+            <img src="assets/imgs/logo.png" alt="Cortex Vision Logo" class="logo">
+            <h1>Welcome to Cortex Vision</h1>
+        </header>
+
+        <main>
+            <section id="team">
+                <div class="section-title-container">
+                    <h2>Our Team</h2>
+                </div>
+                <p>Meet the dedicated professionals behind Cortex Vision. We are a group of passionate individuals committed to innovation and excellence.</p>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Peter Drotar</h3>
+                        <p>Peter Drotar is a distinguished Professor at the Technical University of Kosice, specializing in machine learning, medical imaging, and biomedical signal processing. An ESET Science Award finalist and former Honeywell scientist, he leads impactful research and development projects applying artificial intelligence to advance diagnostic technologies and intelligent information systems.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Jakub Gazda</h3>
+                        <p>Jakub Gazda, MD, is an internist at the 1st Department of Internal Medicine, Pavol Jozef Šafárik University, with extensive research focused on liver diseases, including their pathogenesis, treatment, and epidemiology. He actively contributes to advancing medical knowledge, including the exploration of artificial intelligence to enhance diagnostic capabilities in clinical practice.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Matej Gazda</h3>
+                        <p>Matej Gazda is an accomplished AI researcher and PhD candidate at the Technical University of Kosice, focusing on innovative applications of artificial intelligence in medical imaging, including advanced image segmentation and diagnostics. Recognized as the TOP Student Personality of Slovakia for 2021/2022, his work contributes to cutting-edge solutions in medical technology.</p>
+                    </div>
+                </div>
+                <!-- Add more team details here -->
+            </section>
+
+            <section id="products">
+                <div class="section-title-container">
+                    <h2>Our Products</h2>
+                </div>
+                <p>Discover our cutting-edge products designed to meet your needs. We offer a range of solutions built with the latest technology.</p>
+                <ul class="products-list">
+                    <li>
+                        <h3>ABIGAIL</h3>
+                        <p>Description of Abigail. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </li>
+                    <li>
+                        <h3>BRAIN</h3>
+                        <p>Description of BRAIN. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </li>
+                    <li>
+                        <h3>BRIDGE</h3>
+                        <p>Description of BRIDGE. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </li>
+
+                </ul>
+                <!-- Add more product details here -->
+            </section>
+
+            <section id="references">
+                <div class="section-title-container">
+                    <h2>References</h2>
+                </div>
+                <p>Explore our publications and contributions to the field. We are committed to advancing research and sharing knowledge.</p>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h3>Convolutional neural network ensemble for Parkinson's disease detection from voice recordings</h3>
+                        <p>Authors: M. Hireš, M. Gazda, P. Drotár, N. D. Pah, M. A. Motin, D. K. Kumar</p>
+                        <p>Published in: Computers in Biology and Medicine (2022)</p>
+                        <!-- <img src="assets/imgs/elsevier_logo.png" alt="Elsevier Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                    </div>
+                    <div class="grid-item">
+                        <h3>Multiple-Fine-Tuned Convolutional Neural Networks for Parkinson's Disease Diagnosis From Offline Handwriting</h3>
+                        <p>Authors: M. Gazda, M. Hireš, P. Drotár</p>
+                        <p>Published in: IEEE Transactions on Systems, Man, and Cybernetics: Systems (2021)</p>
+                        <!-- <img src="assets/imgs/ieee_logo.png" alt="IEEE Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                    </div>
+                    <div class="grid-item">
+                        <h3>Artificial Intelligence and Its Application to Minimal Hepatic Encephalopathy Diagnosis</h3>
+                        <p>Authors: J. Gazda, P. Drotar, S. Drazilova, J. Gazda, M. Gazda, M. Janicko, P. Jarcuska</p>
+                        <p>Published in: Journal of Personalized Medicine (2021)</p>
+                        <!-- <img src="assets/imgs/mdpi_logo.png" alt="MDPI Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                    </div>
+                    <div class="grid-item">
+                        <h3>Self-Supervised Deep Convolutional Neural Network for Chest X-Ray Classification</h3>
+                        <p>Authors: M. Gazda, J. Plavka, J. Gazda, P. Drotar</p>
+                        <p>Published in: IEEE Access (2021)</p>
+                        <!-- <img src="assets/imgs/ieee_access_logo.png" alt="IEEE Access Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                    </div>
+                    <div class="grid-item">
+                        <h3>Treatment response to ursodeoxycholic acid in primary biliary cholangitis: A systematic review and meta-analysis</h3>
+                        <p>Authors: J. Gazda, S. Drazilova, M. Gazda, M. Janicko, T. Koky, M. Macej, M. Carbone, P. Jarčuška</p>
+                        <p>Published in: Digestive and Liver Disease (2023)</p>
+                        <!-- <img src="assets/imgs/elsevier_dld_logo.png" alt="Elsevier DLD Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                    </div>
+                    <div class="grid-item">
+                        <h3>Towards annotation-efficient segmentation via image-to-image translation</h3>
+                        <p>Authors: E. Vorontsov, P. Molchanov, M. Gazda, C. Beckham, J. Kautz, S. Kadoury</p>
+                        <p>Published in: Medical Image Analysis (2022)</p>
+                        <!-- <img src="assets/imgs/elsevier_mia_logo.png" alt="Elsevier MIA Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                    </div>
+                </div>
+                <!-- Add more references or testimonials here -->
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Cortex Vision. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>

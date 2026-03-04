@@ -4,210 +4,347 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cortex Vision</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Reset body margin and padding */
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; /* Added a default font */
-            color: #333; /* Default text color */
-            background: linear-gradient(
-                rgba(136, 49, 79, 0.6), 
-                rgba(136, 49, 79, 0.6)
-            ), 
-            url('assets/imgs/background.jpg');
-            background-size: cover; /* Ensures the image covers the entire area */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents the image from repeating */
-            background-attachment: fixed; /* Keeps background fixed during scroll */
-            background-color: #e7e6e7; /* Fallback background color */
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rose: #8C3253;
+            --rose-muted: #8C566A;
+            --rose-soft: #BF95A5;
+            --rose-light: #F2D5E0;
+            --bg: #fafafa;
+            --white: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --border: #eee;
+            --radius: 16px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+            --shadow-hover: 0 8px 30px rgba(140,50,83,0.08);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content */
-            border-radius: 8px; /* Rounded corners for the container */
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
+            padding: 0 24px;
         }
 
+        /* ── Header ── */
         header {
+            padding: 48px 0 0;
             text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 30px;
         }
 
         header img.logo {
-            width: 300px; /* Adjusted logo size */
-            height: auto; /* Maintain aspect ratio */
+            width: 220px;
+            height: auto;
             display: block;
-            margin: 0 auto; /* Center the logo */
+            margin: 0 auto 12px;
         }
 
-        h1, h2 {
-            color: #333; /* Darker color for headings */
-            text-align: center;
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.04em;
         }
 
+        /* ── Sections ── */
         section {
-            padding: 20px;
-            margin-bottom: 30px;
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque for sections */
-            border-radius: 8px;
+            padding: 64px 0;
+        }
+
+        section + section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--rose);
+            text-align: center;
+            margin-bottom: 8px;
         }
 
         section h2 {
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #88314f; /* Accent color for section titles */
-            display: inline-block; /* To make border only as wide as text */
-        }
-        
-        /* Center section headings */
-        .section-title-container {
             text-align: center;
-            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
         }
 
-        /* Basic styling for placeholder content */
-        p {
-            line-height: 1.6;
+        section > .section-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            font-size: 0.95rem;
         }
 
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-
+        /* ── Product cards ── */
         .products-list {
-            list-style-type: none; /* Remove default bullet points */
-            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .products-list li {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            padding: 15px;
-            margin-bottom: 10px; /* Space between product items */
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+        .products-list li:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
         }
 
         .products-list li h3 {
-            margin-top: 0;
-            margin-bottom: 5px;
-            color: #88314f; /* Accent color for product titles */
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
         }
 
         .products-list li h3 i {
-            font-size: 24px;
-            color: #88314f;
+            font-size: 18px;
+            color: var(--rose);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--rose-light);
+            border-radius: 10px;
             flex-shrink: 0;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 30px;
-            border-top: 1px solid #ddd;
-            font-size: 0.9em;
-            color: #555;
+        .products-list li p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin: 0;
         }
 
-        /* Grid layout for team members and references */
+        /* ── Grid cards (team, research) ── */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-            gap: 20px; /* Space between grid items */
-            padding: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
 
         .grid-item {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center; /* Center content within grid items */
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            text-align: left;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+        .grid-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
         }
 
         .grid-item h3 {
-            margin-top: 0;
-            color: #88314f; /* Accent color for item titles */
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        #team .grid-item h3 {
+            color: var(--rose);
+        }
+
+        .grid-item p {
+            color: var(--text-secondary);
+            font-size: 0.87rem;
+            line-height: 1.65;
+            margin-bottom: 4px;
+        }
+
+        .grid-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Partners ── */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .partner-card a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            height: 100%;
+        }
+
+        .partner-card a:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .partner-card img {
+            height: 48px;
+            width: auto;
+            margin-bottom: 16px;
+            object-fit: contain;
+        }
+
+        .partner-card h3 {
+            color: var(--text);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .partner-card .location {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+
+        .partner-card .desc {
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            header {
+                padding: 32px 0 0;
+            }
+
+            header img.logo {
+                width: 180px;
+            }
+
+            section {
+                padding: 48px 0;
+            }
+
+            section h2 {
+                font-size: 1.4rem;
+            }
+
+            .products-list li {
+                padding: 20px;
+            }
+
+            .grid-item, .partner-card a {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="assets/imgs/logo.png" alt="Cortex Vision Logo" class="logo">
-            <h1>Welcome</h1>
+            <img src="assets/imgs/logo_new.svg" alt="Cortex Vision Logo" class="logo">
+            <p class="tagline">AI-powered medical technology</p>
         </header>
 
         <main>
             <section id="products">
-                <div class="section-title-container">
-                    <h2>Our Products</h2>
-                </div>
-                <p>Discover our products designed to enhance efficiency and elevate the quality of healthcare.</p>
+                <p class="section-label">Products</p>
+                <h2>What we build</h2>
+                <p class="section-desc">Intelligent tools designed to enhance clinical efficiency and elevate the quality of healthcare.</p>
                 <ul class="products-list">
                     <li>
                         <h3>
                             <i class="fas fa-microscope"></i>
                             ABIGAIL
                         </h3>
-                        <p>ABIGAIL develops an AI-based system for noninvasive classification of high-grade brain gliomas by integrating MRI imaging with clinical and laboratory data. This approach aims to accelerate diagnosis by replacing invasive biopsies, reduce complications and healthcare costs, and enable faster, more precise treatment decisions. Current Stutus: TRL 2 -> TRL 3.
-</p>
+                        <p>ABIGAIL develops an AI-based system for noninvasive classification of high-grade brain gliomas by integrating MRI imaging with clinical and laboratory data. This approach aims to accelerate diagnosis by replacing invasive biopsies, reduce complications and healthcare costs, and enable faster, more precise treatment decisions. Current Status: TRL 2 → TRL 3.</p>
                     </li>
                     <li>
                         <h3>
                             <i class="fas fa-brain"></i>
                             BRAIN
                         </h3>
-                        <p>In brAIn, we are developing an AI-powered system for automatic detection of intracranial bleeding from CT scans. The solution will prioritize critical cases for immediate radiologist review, enabling faster diagnosis and timely intervention in life-threatening emergencies. Current Stutus: TRL 2 -> TRL 3.</p>
-                    </li>
-                    <li>
-                        <h3>
-                            <i class="fas fa-project-diagram"></i>
-                            BRIDGE
-                        </h3>
-                        <p>BRIDGE is an advanced data harmonization platform that unifies heterogeneous and unstructured medical databases in Slovak environment, enabling seamless AI training and deployment. Current Status: TRL 3. 
-</p>
+                        <p>In brAIn, we are developing an AI-powered system for automatic detection of intracranial bleeding from CT scans. The solution will prioritize critical cases for immediate radiologist review, enabling faster diagnosis and timely intervention in life-threatening emergencies. Current Status: TRL 2 → TRL 3.</p>
                     </li>
                     <li>
                         <h3>
                             <i class="fas fa-file-medical-alt"></i>
                             CLEAN
                         </h3>
-                        <p>Project CLEAN (Clinical Language Engine for Automated Narratives) is an AI-driven system designed to automatically generate structured clinical documents—such as discharge summaries or DRG codes—directly from unstructured hospital data like admission letters and daily clinical notes. Current Status: TRL 3. 
-</p>
+                        <p>Project CLEAN (Clinical Language Engine for Automated Narratives) is an AI-driven system designed to automatically generate structured clinical documents—such as discharge summaries or DRG codes—directly from unstructured hospital data like admission letters and daily clinical notes. Current Status: TRL 3.</p>
+                    </li>
+                    <li>
+                        <h3>
+                            <i class="fas fa-project-diagram"></i>
+                            BRIDGE
+                        </h3>
+                        <p>BRIDGE is an advanced data harmonization platform that unifies heterogeneous and unstructured medical databases, enabling seamless AI training and deployment. Its research arm, CLEAN (Clinical Language Engine for Automated Narratives), leverages AI to automatically summarize patients' disease evolution for shift handovers, discharge reports, and examination requests. Current Status: TRL 3.</p>
                     </li>
                     <li>
                         <h3>
                             <i class="fas fa-user-shield"></i>
                             GhostEMR
                         </h3>
-                        <p>GhostEMR is a specialized, GDPR-compliant software solution designed for the secure anonymization and de-identification of Electronic Health Records (EHR). It processes a wide range of medical documentation — from outpatient consults and admission letters to daily clinical notes, laboratory and imaging results, inpatient consults, discharge summaries, and DRG codes.
-
-GhostEMR uses advanced algorithms to remove or mask personally identifiable information while preserving the statistical and clinical integrity of datasets, enabling healthcare institutions to safely share and analyze patient data for research, innovation, and quality improvement. Current Status: TRL 9. </p>
+                        <p>GhostEMR is a specialized, GDPR-compliant software solution designed for the secure anonymization and de-identification of Electronic Health Records (EHR). It processes a wide range of medical documentation — from outpatient consults and admission letters to daily clinical notes, laboratory and imaging results, inpatient consults, discharge summaries, and DRG codes. GhostEMR uses advanced algorithms to remove or mask personally identifiable information while preserving the statistical and clinical integrity of datasets, enabling healthcare institutions to safely share and analyze patient data for research, innovation, and quality improvement. Current Status: TRL 9.</p>
                     </li>
-
                 </ul>
-                <!-- Add more product details here -->
             </section>
 
-
             <section id="team">
-                <div class="section-title-container">
-                    <h2>Our Team</h2>
-                </div>
-                <p>Meet the dedicated professionals behind Cortex Vision. We are a group of passionate individuals committed to innovation and excellence.</p>
+                <p class="section-label">Team</p>
+                <h2>The people behind it</h2>
+                <p class="section-desc">A group of passionate researchers and clinicians committed to innovation and excellence.</p>
                 <div class="grid-container">
                     <div class="grid-item">
                         <h3>Peter Drotar</h3>
@@ -222,114 +359,96 @@ GhostEMR uses advanced algorithms to remove or mask personally identifiable info
                         <p>Matej Gazda, MSc, PhD, is a researcher at the Technical University of Kosice specializing in artificial intelligence for medical imaging, with a focus on advanced image segmentation and diagnostic applications. He completed a one-year research stay at Polytechnique Montréal. Named the Top Student Personality of Slovakia for 2021/2022, he contributes to the development of innovative technologies in medical AI.</p>
                     </div>
                 </div>
-                <!-- Add more team details here -->
             </section>
 
             <section id="references">
-                <div class="section-title-container">
-                    <h2>Research Accomplishments</h2>
-                </div>
-                <p>Explore our publications and contributions to the field. We are committed to advancing research and sharing knowledge.</p>
+                <p class="section-label">Research</p>
+                <h2>Publications</h2>
+                <p class="section-desc">Our contributions to advancing medical AI and clinical science.</p>
                 <div class="grid-container">
                     <div class="grid-item">
                         <h3>Prospective evaluation of speech as a digital biomarker for covert hepatic encephalopathy</h3>
-                        <p>Authors: J. Gazda, J.C. García-Pagán, S. Drazilova, P. Drotar, M. Hires, M. Gazda, M. Janicko, A. Baiges, and P. Jarcuska</p>
-                        <p>Published in: npj Digital Medicine (2025)</p>
-                        <!-- <img src="assets/imgs/elsevier_logo.png" alt="Elsevier Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                        <p>J. Gazda, J.C. García-Pagán, S. Drazilova, P. Drotar, M. Hires, M. Gazda, M. Janicko, A. Baiges, P. Jarcuska</p>
+                        <p>npj Digital Medicine (2025)</p>
                     </div>
                     <div class="grid-item">
                         <h3>Convolutional neural network ensemble for Parkinson's disease detection from voice recordings</h3>
-                        <p>Authors: M. Hireš, M. Gazda, P. Drotár, N. D. Pah, M. A. Motin, D. K. Kumar</p>
-                        <p>Published in: Computers in Biology and Medicine (2022)</p>
-                        <!-- <img src="assets/imgs/elsevier_logo.png" alt="Elsevier Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                        <p>M. Hireš, M. Gazda, P. Drotár, N. D. Pah, M. A. Motin, D. K. Kumar</p>
+                        <p>Computers in Biology and Medicine (2022)</p>
                     </div>
                     <div class="grid-item">
                         <h3>Multiple-Fine-Tuned Convolutional Neural Networks for Parkinson's Disease Diagnosis From Offline Handwriting</h3>
-                        <p>Authors: M. Gazda, J. Gazda, S. Kadoury, R. Kanasz, P. Drotar</p>
+                        <p>M. Gazda, J. Gazda, S. Kadoury, R. Kanasz, P. Drotar</p>
                         <p>Computer Methods and Programs in Biomedicine (2025)</p>
                     </div>
                     <div class="grid-item">
                         <h3>echoGAN: Extending the field of view in Transthoracic Echocardiography through conditional GAN-based outpainting</h3>
-                        <p>Authors: J. Gazda, J.C. García-Pagán, S. Drazilova, P. Drotar, M. Hires, M. Gazda, M. Janicko, A. Baiges, and P. Jarcuska</p>
-                        <p>Published in: npj Digital Medicine (2025)</p>
-                        <!-- <img src="assets/imgs/elsevier_logo.png" alt="Elsevier Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                        <p>J. Gazda, J.C. García-Pagán, S. Drazilova, P. Drotar, M. Hires, M. Gazda, M. Janicko, A. Baiges, P. Jarcuska</p>
+                        <p>npj Digital Medicine (2025)</p>
                     </div>
                     <div class="grid-item">
                         <h3>Handwriting-Based Classification of Hepatic Encephalopathy Using Nonlinear Complexity Features</h3>
-                        <p>Authors: K. Demcakova P. Drotar, M. Hires, J. Gazda, P. Jarcuska</p>
-                        <p>Published in: Proceedings - IEEE Symposium on Computer-Based Medical Systems (2025)</p>
+                        <p>K. Demcakova, P. Drotar, M. Hires, J. Gazda, P. Jarcuska</p>
+                        <p>IEEE Symposium on Computer-Based Medical Systems (2025)</p>
                     </div>
                     <div class="grid-item">
                         <h3>Artificial Intelligence and Its Application to Minimal Hepatic Encephalopathy Diagnosis</h3>
-                        <p>Authors: J. Gazda, P. Drotar, S. Drazilova, J. Gazda, M. Gazda, M. Janicko, P. Jarcuska</p>
-                        <p>Published in: Journal of Personalized Medicine (2021)</p>
-                        <!-- <img src="assets/imgs/mdpi_logo.png" alt="MDPI Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                        <p>J. Gazda, P. Drotar, S. Drazilova, J. Gazda, M. Gazda, M. Janicko, P. Jarcuska</p>
+                        <p>Journal of Personalized Medicine (2021)</p>
                     </div>
                     <div class="grid-item">
                         <h3>Self-Supervised Deep Convolutional Neural Network for Chest X-Ray Classification</h3>
-                        <p>Authors: M. Gazda, J. Plavka, J. Gazda, P. Drotar</p>
-                        <p>Published in: IEEE Access (2021)</p>
-                        <!-- <img src="assets/imgs/ieee_access_logo.png" alt="IEEE Access Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                        <p>M. Gazda, J. Plavka, J. Gazda, P. Drotar</p>
+                        <p>IEEE Access (2021)</p>
                     </div>
                     <div class="grid-item">
                         <h3>Treatment response to ursodeoxycholic acid in primary biliary cholangitis: A systematic review and meta-analysis</h3>
-                        <p>Authors: J. Gazda, S. Drazilova, M. Gazda, M. Janicko, T. Koky, M. Macej, M. Carbone, P. Jarčuška</p>
-                        <p>Published in: Digestive and Liver Disease (2023)</p>
-                        <!-- <img src="assets/imgs/elsevier_dld_logo.png" alt="Elsevier DLD Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                        <p>J. Gazda, S. Drazilova, M. Gazda, M. Janicko, T. Koky, M. Macej, M. Carbone, P. Jarčuška</p>
+                        <p>Digestive and Liver Disease (2023)</p>
                     </div>
                     <div class="grid-item">
                         <h3>Towards annotation-efficient segmentation via image-to-image translation</h3>
-                        <p>Authors: E. Vorontsov, P. Molchanov, M. Gazda, C. Beckham, J. Kautz, S. Kadoury</p>
-                        <p>Published in: Medical Image Analysis (2022)</p>
-                        <!-- <img src="assets/imgs/elsevier_mia_logo.png" alt="Elsevier MIA Logo" style="width:100px; height:auto; margin-top:10px;"> -->
+                        <p>E. Vorontsov, P. Molchanov, M. Gazda, C. Beckham, J. Kautz, S. Kadoury</p>
+                        <p>Medical Image Analysis (2022)</p>
                     </div>
                 </div>
-                <!-- Add more references or testimonials here -->
             </section>
 
             <section id="partners">
-                <div class="section-title-container">
-                    <h2>Partners & Collaborations</h2>
-                </div>
-                <div style="display: flex; justify-content: center; align-items: center; padding: 30px 0; gap: 40px; flex-wrap: wrap;">
-                    <div style="text-align: center; max-width: 400px;">
-                        <a href="https://www.unlp.sk/" target="_blank" style="display: inline-block; text-decoration: none;">
-                            <div style="background-color: #f5f5f5; padding: 30px; border-radius: 8px; border: 1px solid #ddd; transition: box-shadow 0.3s; height: 100%;">
-                                <img src="assets/imgs/unlp.webp" alt="Louis Pasteur University Hospital Logo" style="height: 60px; width: auto; margin-bottom: 15px;">
-                                <h3 style="color: #88314f; margin: 0 0 10px 0; font-size: 20px;">Louis Pasteur University Hospital</h3>
-                                <p style="margin: 0 0 15px 0; color: #666; font-size: 14px; font-style: italic;">Košice, Slovakia</p>
-                                <p style="margin: 0; color: #333; font-size: 14px; line-height: 1.5;">The Louis Pasteur University Hospital in Kosice is one of the leading teaching and research hospitals in Slovakia, affiliated with the Pavol Jozef Safarik University. It provides comprehensive tertiary care, serves as a national referral center in several medical specialties, and plays a key role in clinical research and innovation.</p>
-                            </div>
+                <p class="section-label">Partners</p>
+                <h2>Collaborations</h2>
+                <p class="section-desc">Working with leading institutions to advance medical AI.</p>
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <a href="https://www.unlp.sk/" target="_blank">
+                            <img src="assets/imgs/unlp.webp" alt="Louis Pasteur University Hospital Logo">
+                            <h3>Louis Pasteur University Hospital</h3>
+                            <p class="location">Košice, Slovakia</p>
+                            <p class="desc">One of the leading teaching and research hospitals in Slovakia, providing comprehensive tertiary care and serving as a national referral center in several medical specialties.</p>
                         </a>
                     </div>
-                    <div style="text-align: center; max-width: 400px;">
-                        <a href="https://www.upjs.sk/en/" target="_blank" style="display: inline-block; text-decoration: none;">
-                            <div style="background-color: #f5f5f5; padding: 30px; border-radius: 8px; border: 1px solid #ddd; transition: box-shadow 0.3s; height: 100%;">
-                                <img src="assets/imgs/upjs.png" alt="Pavol Jozef Šafárik University Logo" style="height: 75px; width: auto; margin-bottom: 0px;">
-                                <h3 style="color: #88314f; margin: 0 0 10px 0; font-size: 20px;">Pavol Jozef Šafárik University</h3>
-                                <p style="margin: 0 0 15px 0; color: #666; font-size: 14px; font-style: italic;">Košice, Slovakia</p>
-                                <p style="margin: 0; color: #333; font-size: 14px; line-height: 1.5;">Pavol Jozef Safarik University in Kosice is one of Slovakia’s leading universities, known for its strong emphasis on research, innovation, and international collaboration. Its Faculty of Medicine combines cutting-edge biomedical research with high-quality medical education, fostering progress in clinical and translational science.</p>
-                            </div>
+                    <div class="partner-card">
+                        <a href="https://www.upjs.sk/en/" target="_blank">
+                            <img src="assets/imgs/upjs.png" alt="Pavol Jozef Šafárik University Logo" style="height: 60px;">
+                            <h3>Pavol Jozef Šafárik University</h3>
+                            <p class="location">Košice, Slovakia</p>
+                            <p class="desc">One of Slovakia's leading universities, known for its strong emphasis on research, innovation, and international collaboration in biomedical and clinical science.</p>
                         </a>
                     </div>
-                    <div style="text-align: center; max-width: 400px;">
-                        <a href="https://tuke.com" target="_blank" style="display: inline-block; text-decoration: none;">
-                            <div style="background-color: #f5f5f5; padding: 30px; border-radius: 8px; border: 1px solid #ddd; transition: box-shadow 0.3s; height: 100%;">
-                                <img src="assets/imgs/tuke.png" alt="Technical University of Košice Logo" style="height: 60px; width: auto; margin-bottom: 15px;">
-                                <h3 style="color: #88314f; margin: 0 0 10px 0; font-size: 20px;">Technical University of Košice</h3>
-                                <p style="margin: 0 0 15px 0; color: #666; font-size: 14px; font-style: italic;">Košice, Slovakia</p>
-                                <p style="margin: 0; color: #333; font-size: 14px; line-height: 1.5;">The Technical University of Košice is a prominent Slovak technical university recognized for its excellence in engineering, computer science, and applied research. It fosters innovation through interdisciplinary collaboration and plays a vital role in advancing technology-driven solutions in healthcare and beyond.</p>
-                            </div>
+                    <div class="partner-card">
+                        <a href="https://tuke.com" target="_blank">
+                            <img src="assets/imgs/tuke.png" alt="Technical University of Košice Logo">
+                            <h3>Technical University of Košice</h3>
+                            <p class="location">Košice, Slovakia</p>
+                            <p class="desc">A prominent Slovak technical university recognized for excellence in engineering, computer science, and applied research in technology-driven healthcare solutions.</p>
                         </a>
                     </div>
-                    <div style="text-align: center; max-width: 400px;">
-                        <a href="https://uvptechnicom.sk" target="_blank" style="display: inline-block; text-decoration: none;">
-                            <div style="background-color: #f5f5f5; padding: 30px; border-radius: 8px; border: 1px solid #ddd; transition: box-shadow 0.3s; height: 100%;">
-                                <img src="assets/imgs/uvptechnicom.png" alt="UVP TECHNICOM Logo" style="height: 60px; width: auto; margin-bottom: 15px;">
-                                <h3 style="color: #88314f; margin: 0 0 10px 0; font-size: 20px;">UVP TECHNICOM</h3>
-                                <p style="margin: 0 0 15px 0; color: #666; font-size: 14px; font-style: italic;">Košice, Slovakia</p>
-                                <p style="margin: 0; color: #333; font-size: 14px; line-height: 1.5;">University Scientific Park TECHNICOM is an innovation hub affiliated with the Technical University of Košice, Slovakia. It creates an ecosystem for accelerating technology innovation and transfer, bridging academic research and development with business practice. Cortex Vision has been affiliated with Technicom since 2026. </p>
-                            </div>
+                    <div class="partner-card">
+                        <a href="https://uvptechnicom.sk" target="_blank">
+                            <img src="assets/imgs/uvptechnicom.png" alt="UVP TECHNICOM Logo">
+                            <h3>UVP TECHNICOM</h3>
+                            <p class="location">Košice, Slovakia</p>
+                            <p class="desc">An innovation hub creating an ecosystem for accelerating technology transfer, bridging academic research with business practice. Cortex Vision has been affiliated since 2026.</p>
                         </a>
                     </div>
                 </div>
@@ -337,7 +456,7 @@ GhostEMR uses advanced algorithms to remove or mask personally identifiable info
         </main>
 
         <footer>
-            <p>&copy; 2026 Cortex Vision. All rights reserved.</p>
+            <p>© 2026 Cortex Vision. All rights reserved.</p>
         </footer>
     </div>
 </body>
